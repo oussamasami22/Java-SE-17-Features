@@ -1,4 +1,4 @@
-package ma.ensa;
+package ma.ensa.PredicateInterface;
 
 import java.util.Arrays;
 import java.util.List;
