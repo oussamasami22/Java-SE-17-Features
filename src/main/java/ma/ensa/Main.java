@@ -24,8 +24,8 @@ public class Main {
                 acc -> fixedStrategySupplier.get().calculateInterest(acc.balance);
         Consumer<BankAccount> printInterest = acc -> {
             double interestOwner = interestCalculator.apply(acc);
-            System.out.println(acc.owner + "will recieve $" +interestOwner+ " as interest.");
-        };
+            String threadName = Thread.currentThread().getName();
+            System.out.println("[" + threadName + "] " + acc.owner + " will receive $" + interestOwner + " as interest.");        };
         System.out.println("🏦 Processing VIP Accounts:\n");
         accounts.parallelStream()
                 .filter(isVIP)
