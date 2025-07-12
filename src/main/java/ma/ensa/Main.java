@@ -27,7 +27,7 @@ public class Main {
             System.out.println(acc.owner + "will recieve $" +interestOwner+ " as interest.");
         };
         System.out.println("🏦 Processing VIP Accounts:\n");
-        accounts.stream()
+        accounts.parallelStream()
                 .filter(isVIP)
                 .peek(printInterest)
                 .map(acc -> acc.applyInterest(fixedStrategySupplier.get()))
