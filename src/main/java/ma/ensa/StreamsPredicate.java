@@ -3,6 +3,7 @@ package ma.ensa;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class StreamsPredicate {
 
@@ -34,7 +35,14 @@ public class StreamsPredicate {
                 new Person("Amal", 19, "amal@gmail.com")
         );
         Predicate<Person> isAdult = p -> p.age >=18;
+        Predicate<Person> startWithA = p -> p.name.startsWith("A");
+        Predicate<Person> isValidEmail = p -> p.email.contains("@");
 
+        List<Person> filtredPerson = people.stream()
+                .filter(startWithA.and(isAdult.and(isValidEmail)))
+                .collect(Collectors.toList());
+
+        System.out.println(filtredPerson);
     }
 
 }
