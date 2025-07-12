@@ -1,17 +1,26 @@
 package ma.ensa;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import ma.ensa.Interfaces.InterestStrategy;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
+
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        List<BankAccount> accounts = Arrays.asList(
+                new BankAccount("oussama ",2300),
+                new BankAccount("sami", 4000),
+                new BankAccount("ayoub", 4000)
+        );
+        Supplier<InterestStrategy> fixedStrategySupplier  =() -> balance -> balance * 0.5;
+        Predicate<BankAccount> isVIP =  b -> b.balance >=10000;
+        Function<BankAccount, Double> interestCalculator =
+                acc -> fixedStrategySupplier.get().calculateInterest(acc.balance);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
     }
-}
+
+    }
